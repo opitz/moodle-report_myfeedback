@@ -66,14 +66,14 @@ foreach ($acyears as $val) {
 }
 
 // Show the academic year menu.
-$i=0;
-$o ='';
+$i = 0;
+$o = '';
 $o .= '<form method="POST" id="yearform" action="">'
         . '<input type="hidden" name="sesskey" value="' . sesskey() . '" />'
         . "<input type=\"hidden\" name=\"archive\" value=\"no\">"
         . "<select id=\"mySelect\" value=$res name=\"myselect\">";
 foreach ($acyears as $val) {
-    if ($val == 'current'){
+    if ($val == 'current') {
         $linktext = (isset($config->academicyeartext) ? $config->academicyeartext : '');
     } else {
         $alt = 'archivelinktext' . $i;
