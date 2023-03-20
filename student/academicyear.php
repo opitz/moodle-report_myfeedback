@@ -58,7 +58,7 @@ $url = [];
 $i = 1;
 foreach ($acyears as $val) {
     if ($val == 'current') {
-        $url[$val] = '';
+        $url[$val] = 'current';
     } else {
         $alink = "archivelink" . $i++;
         $url[$val] = $config->$alink;
@@ -66,25 +66,30 @@ foreach ($acyears as $val) {
 }
 
 // Show the academic year menu.
-echo '<form method="POST" id="yearform" action="">'
+$i=0;
+$o ='';
+$o .= '<form method="POST" id="yearform" action="">'
         . '<input type="hidden" name="sesskey" value="' . sesskey() . '" />'
         . "<input type=\"hidden\" name=\"archive\" value=\"no\">"
         . "<select id=\"mySelect\" value=$res name=\"myselect\">";
-
 foreach ($acyears as $val) {
-    echo "<option url='" . $url[$val] . "' value=" . $val;
-    if ($res == $val) {
-        echo ' selected';
-    }
-    if ($val == 'current') {
-        echo ">" . $val;
+    if ($val == 'current'){
+        $linktext = (isset($config->academicyeartext) ? $config->academicyeartext : '');
     } else {
-        if ($url[$val] != '') { // Show only archived years when there is a URL.
-            echo ">" . "20" . implode('/', str_split($val, 2));
-        }
+        $alt = 'archivelinktext' . $i;
+        $linktext = (isset($config->$alt) ? $config->$alt : '');
     }
+
+    if ($url[$val] != '' && $linktext != '') {
+        $o .= "<option url='" . $url[$val] . "' value=" . $val .
+            ($val == $res ? ' selected' : '') .
+            ">" . $linktext;
+    }
+    $i++;
 }
-echo "</select></form>";
+
+$o .= "</select></form>";
+echo $o;
 
 // No support before academic year 1213.
 if ($res != 'current' && $res < 1213) {
