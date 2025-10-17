@@ -44,6 +44,10 @@ use stdClass;
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class report {
+    /** @var string|\lang_string  */
+    private string|\lang_string $title;
+    /** @var stdClass  */
+    private stdClass $content;
 
     /**
      * Initialises the report and sets the title.
@@ -144,7 +148,7 @@ class report {
                 }
             }
             $DB = $currentdb;
-            $CFG->dbfamily = $currentdb->get_dbfamily(); // TODO: BC only for now.
+            $CFG->dbfamily = $currentdb->get_dbfamily(); // Todo: BC only for now.
 
             return true;
         }
@@ -255,7 +259,7 @@ class report {
                     AND ws.workshopid=? AND ws.example=0 AND wa.submissionid=?
               LEFT JOIN {workshop_grades} wg ON wg.assessmentid=wa.id AND wa.submissionid=?";
         $arr = [$cid, $userid, $assignid, $subid, $subid];
-        // TODO: fix this! If won't work here, use: if ($rs->valid()) {}.
+        // Todo: fix this! If won't work here, use: if ($rs->valid()) {}.
         if ($assess = $currentdb->get_recordset_sql($peer, $arr)) {
             if ($itemnumber == 1) {
                 foreach ($assess as $a) {
@@ -1023,7 +1027,7 @@ class report {
      */
     public function get_fraction($grade, $cid, $decimals) {
         global $CFG;
-        // TODO: use my own function other than grade_get_setting because when we start using multiple DBs
+        // Todo: use my own function other than grade_get_setting because when we start using multiple DBs
         // then $DB would be the incorrect database or we need to set $DB to the database being used.
         if (isset($grade) && fmod($grade, 1)) {
             if (is_null($decimals)) {
@@ -2838,7 +2842,7 @@ class report {
             $allstaffstats = $this->get_overall_staff_usage_statistics($uids);
 
             // Print stats for each staff member.
-            // TODO: make the drop down button toggle to show/hide student data for the category.
+            // Todo: make the drop down button toggle to show/hide student data for the category.
             // Currently it shows and can't be toggled off.
             $staffusagetable = "";
             $studentsviewedbyanystaff = [];
@@ -3156,7 +3160,7 @@ class report {
             $allstudentsstats = $this->get_overall_student_usage_statistics($uids);
 
             // Print stats for each student.
-            // TODO: make the drop down button toggle to show/hide student data for the category.
+            // Todo: make the drop down button toggle to show/hide student data for the category.
             // Currently it shows and can't be toggled off.
             $studentusagetable = "";
             $overallstats = [];
@@ -3188,7 +3192,7 @@ class report {
                         . get_string('dashboard', 'report_myfeedback') . "\" rel=\"tooltip\">"
                         . $onestudentstats['name']."</a></td>";
                 }
-                // TODO: get the number of staff who have viewed the report for that student and display it under
+                // Todo: get the number of staff who have viewed the report for that student and display it under
                 // viewed by followed by " staff".
                 $studentusagetable .= "<td>";
                 $studentusagetable .= ($onestudentstats['totalviews'] > 0) ? "yes" : "&nbsp;";
@@ -5841,7 +5845,7 @@ class report {
                         if ($record->gi_itemtype == 'mod') {
                             if ($quizgrade != 'noreview') {
                                 // Get the grade display type and grade type.
-                                // TODO: Change the functionality to display grades to just (if grade_item display is 0 then
+                                // Todo: Change the functionality to display grades to just (if grade_item display is 0 then
                                 // check if course grade display type is set and if so take that value.
                                 // I've added that function to get_course_grade_displaytype(course id).
                                 switch ($gradetype) {

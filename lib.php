@@ -36,8 +36,8 @@
  * @param global_navigation $navigation The navigation node to extend
  */
 function report_myfeedback_extend_navigation(global_navigation $navigation) {
-    // TODO: Segun Babalola. Where does $course come from?
-    // TODO: Check that pix_icon is not deprecated.
+    // Todo: Segun Babalola. Where does $course come from?
+    // Todo: Check that pix_icon is not deprecated.
     $url = new moodle_url('/report/myfeedback/index.php', ['course' => $course->id]);
     $navigation->add(get_string('pluginname', 'report_myfeedback'), $url, null, null, null, new pix_icon('i/report', ''));
 }

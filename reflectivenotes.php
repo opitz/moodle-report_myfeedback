@@ -60,21 +60,26 @@ if (!empty($notename) && $gradeid && $userid) {
     );
     if ($usernotes) {
         $DB->execute($sql1, $params1);
-        echo get_string('updatesuccessful', 'report_myfeedback');
         $event = \report_myfeedback\event\myfeedbackreport_updatenotes::create(
                 ['context' => context_user::instance($userid), 'relateduserid' => $userid]
         );
     } else {
         $DB->execute($sql2, $params2);
-        echo get_string('insertsuccessful', 'report_myfeedback');
     }
 
     $event->trigger();
 
-    redirect(new \moodle_url('/report/myfeedback/index.php',
-        [
-            'userid' => $userid,
-            'currenttab' => 'feedback',
-        ]
-    ));
+    $notification = $usernotes
+        ? get_string('updatesuccessful', 'report_myfeedback')
+        : get_string('insertsuccessful', 'report_myfeedback');
+
+    redirect(new \moodle_url(
+            '/report/myfeedback/index.php',
+            [
+                'userid' => $userid,
+                'currenttab' => 'feedback',
+            ]
+        ),
+        $notification, null, \core\output\notification::NOTIFY_SUCCESS
+    );
 }

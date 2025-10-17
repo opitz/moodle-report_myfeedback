@@ -28,12 +28,12 @@ defined('MOODLE_INTERNAL') || die();
 
 $PAGE->requires->js_call_amd('report_myfeedback/usage', 'init');
 
-// TODO: turn off error reporting
+// Todo: turn off error reporting
 // Report all errors except E_NOTICE.
 error_reporting(E_ALL & E_NOTICE);
 
 // Check permission to view usage reports - must have a role with this permission.
-// TODO: Make the permission site wide only (if possible).
+// Todo: Make the permission site wide only (if possible).
 if ($report->get_dashboard_capability($USER->id, 'report/myfeedback:usage')) {
 
     $report->setup_external_db();
@@ -209,7 +209,7 @@ if ($report->get_dashboard_capability($USER->id, 'report/myfeedback:usage')) {
                 $reporttitle = get_string('category', 'report_myfeedback') . " "
                     . lcfirst(get_string('staff', 'report_myfeedback')) . ": " . $report->get_category_name($categoryid);
 
-                // TODO: get all the personal tutors attached to the students in this category?!?!
+                // Todo: get all the personal tutors attached to the students in this category?!?!
                 echo "<h3>" . $reporttitle . $report->get_parent_category_link($categoryid, $reporttype) . "</h3>";
                 echo '<div class="report_info">' . get_string('usage_categorystaff_info', 'report_myfeedback') . '</div>';
 
@@ -391,7 +391,7 @@ if ($report->get_dashboard_capability($USER->id, 'report/myfeedback:usage')) {
                     . lcfirst(get_string('staff', 'report_myfeedback')) . ": " . $report->get_course_name($courseid)
                     . " (".$report->get_course_name($courseid, false).")";
 
-                // TODO: get all the personal tutors attached to the students in this course?!?!
+                // Todo: get all the personal tutors attached to the students in this course?!?!
                 echo "<h3>" . $reporttitle . $report->get_course_category_link($courseid, "categorystaff") . "</h3>";
                 echo '<div class="report_info">' . get_string('usage_coursestaff_info', 'report_myfeedback') . '</div>';
 

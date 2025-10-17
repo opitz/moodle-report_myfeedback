@@ -183,7 +183,7 @@ if ($student = $report->get_dashboard_capability($USER->id, 'report/myfeedback:s
     $isstudent = true;
 }
 
-// TODO - should we only do this if we are wanting to look at a student's report though?
+// Todo - should we only do this if we are wanting to look at a student's report though?
 // ... It would be redundant if we're just viewing our own report, or the usage dashboard.
 // This capability is something that everyone who has been enrolled on a course has on that course.
 // Here we want to check the courses and see if the logged in user has modtutor or prog admin capability
