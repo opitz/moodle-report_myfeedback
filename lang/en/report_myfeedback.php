@@ -432,6 +432,3 @@ $string['wordcloud_title'] = 'Words used commonly in feedback';
 $string['workshop'] = 'Workshop';
 $string['year'] = 'Year ';
 $string['yearlevel'] = 'Yr level';
-
-
-
